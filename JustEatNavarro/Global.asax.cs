@@ -17,5 +17,13 @@ namespace JustEatNavarro
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_PresendRequestHeaders()
+        {
+            // Elkiminar encabezados que proporcionan informacion util para atacantes
+            Response.Headers.Remove("X-AspNetMvc-Version");
+            Response.Headers.Remove("X-AspNet-Version");
+            Response.Headers.Remove("Server");
+        }
     }
 }
